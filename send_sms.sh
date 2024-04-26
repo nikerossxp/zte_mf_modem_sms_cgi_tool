@@ -11,4 +11,4 @@ tz="UTC-3"
 datetime=`TZ=":$tz" date +'%y;%m;%d;%H;%M;%S;'`
 msg=$(printf "$2" | iconv -f UTF-8 -t UCS-2BE | xxd -p | tr -d '\n')
 
-curl -d "isTest=false&goformId=SEND_SMS&notCallback=true&Number=$phone&sms_time=$msgdatetime&MessageBody=$msg&ID=-1&encode_type=UNICODE" -H "X-Requested-With:XMLHttpRequest" -H "Referer:http://$ip/index.html" -X POST "http://$ip/goform/goform_set_cmd_process" --compressed --silent --output /dev/null
+curl -d "isTest=false&goformId=SEND_SMS&notCallback=true&Number=$phone&sms_time=$datetime&MessageBody=$msg&ID=-1&encode_type=UNICODE" -H "X-Requested-With:XMLHttpRequest" -H "Referer:http://$ip/index.html" -X POST "http://$ip/goform/goform_set_cmd_process" --compressed --silent --output /dev/null
